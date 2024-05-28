@@ -1,0 +1,26 @@
+{
+  // JS
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // VSCode Editor
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never",
+    "source.fixAll.stylelint": "explicit"
+  },
+  // Extension: Git
+  "git.rebaseWhenSync": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  // Extension: Prettier
+  "prettier.requireConfig": true,
+  // Extension: ESLint
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+  "eslint.format.enable": true,
+  // Stylelint
+  "files.insertFinalNewline": true,
+  "editor.linkedEditing": true,
+  // "cSpell.diagnosticLevel": "Hint",
+  "cSpell.words": ["iconify", "tanstack", "customizer", "roboto"]
+}
