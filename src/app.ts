@@ -1,27 +1,43 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
-import 'dotenv/config';
-import bodyParser from 'body-parser';
-import Connect from './connect';
+import express, { Express, Application, Request, Response } from 'express';
+import * as http from 'http';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import { RouteConfig } from './Common/common.route.config';
 import { UserRoutes } from './User/user.route.config';
+import { AuthRoutes } from './Auth/auth.route.config';
+import { MenuRoutes } from './Menu/menu.router.config';
 
 const routes: Array<RouteConfig> = [];
 
-const app: Application = express();
+const app: Express = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+dotenv.config({});
+
+app.use(express.json());
+app.use(cors());
+
+const PORT = process.env.PORT || 8000;
+
+if (process.env.DEBUG) {
+  process.on('unhandledRejection', function (reason) {
+    process.exit(1);
+  });
+} else {
+}
+
+routes.push(new UserRoutes(app));
+routes.push(new AuthRoutes(app));
+routes.push(new MenuRoutes(app));
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('TS App is Running');
+  res.send('Welcome world');
 });
 
-const PORT = process.env.PORT;
-const db = process.env.DATABASE as string;
+const server: http.Server = http.createServer(app);
+server.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
 
-Connect({ db });
-routes.push(new UserRoutes(app));
-
-app.listen(PORT, () => {
-  console.log(`server is running on PORT ${PORT}`);
+  routes.forEach((route: RouteConfig) => {
+    console.log(`Routes configured for ${route.getName()}`);
+  });
 });

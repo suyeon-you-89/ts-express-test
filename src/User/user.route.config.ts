@@ -8,7 +8,8 @@ export class UserRoutes extends RouteConfig {
   }
 
   configureRoutes() {
-    this.app.route(`/users`).get([UserController.getUsers]);
+    this.app.route(`/api/users`).get([UserController.getUsers]);
+    this.app.route(`/api/user`).post([UserController.createUser]);
     return this.app;
   }
 }

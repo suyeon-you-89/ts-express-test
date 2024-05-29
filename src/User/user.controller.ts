@@ -1,43 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
-import User, { IUser } from '../Models/User.model';
+import User, { UserDocument } from './user.model';
+import authService from '../Auth/auth.service';
 
-
-interface ICreateUserInput {
-  email: IUser['email'];
-  firstName: IUser['firstName'];
-  lastName: IUser['lastName'];
-}
- class UserController {
+class UserController {
   constructor() {}
 
   async getUsers(req: any, res: Response, next: NextFunction) {
-    return res.status(200).json({
-      success: true,
-      data: [
-        {
-          name: 'John'
-        },
-        {
-          name: 'Steve'
-        }
-      ]
+    User.find({}).then((data: Array<UserDocument>) => {
+      return res.status(200).json({
+        success: true,
+        data
+      });
     });
   }
 
-  async function CreateUser({ email, firstName, lastName }: ICreateUserInput): Promise<IUser> {
-    return User.create({
-      email,
-      firstName,
-      lastName
-    })
-      .then((data: IUser) => {
-        return data;
-      })
-      .catch((error: Error) => {
-        throw error;
-      });
-  }
+  async createUser(req: Request, res: Response, next: NextFunction) {
+    // const userDoc = User.build({ email, password, username });
+    console.log(req.body);
+    const newUser = await authService.createUser(req.body);
 
+    return res.status(200).json(newUser);
+  }
 }
 
 export default new UserController();

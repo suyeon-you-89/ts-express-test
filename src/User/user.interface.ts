@@ -1,7 +1,8 @@
-import { IUser } from '@/Models/User.model';
-
-interface ICreateUserInput {
-  email: IUser['email'];
-  firstName: IUser['firstName'];
-  lastName: IUser['lastName'];
+export interface IUser {
+  email: string;
+  password: string;
+  username: string;
 }
+// UserSchema.statics.build = (attrs: IUser) => {
+//   return new User(attrs);
+// };

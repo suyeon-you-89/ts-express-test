@@ -1,0 +1,22 @@
+### create dummy
+POST http://localhost:3030/api/menus/dummy HTTP/1.1
+content-type: application/json
+
+{}
+
+###
+POST http://localhost:3030/api/menu HTTP/1.1
+Authorization: token xxx
+content-type: application/json
+
+{
+  "code":"menu_code_1",
+  "name": "menu2",
+  "path": "/menu2",
+  "type": "section"
+}
+
+####
+GET http://localhost:3030/api/menus HTTP/1.1
+Authorization: token xxx
+content-type: application/json
