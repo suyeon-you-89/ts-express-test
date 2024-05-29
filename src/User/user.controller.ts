@@ -1,11 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
-import userModel from './user.model';
-class UserController {
+import User, { IUser } from '../Models/User.model';
+
+
+interface ICreateUserInput {
+  email: IUser['email'];
+  firstName: IUser['firstName'];
+  lastName: IUser['lastName'];
+}
+ class UserController {
   constructor() {}
 
-  async createUser(req: Request, res: Response, next: NextFunction) {
-    userModel.create({});
-  }
   async getUsers(req: any, res: Response, next: NextFunction) {
     return res.status(200).json({
       success: true,
@@ -19,6 +23,21 @@ class UserController {
       ]
     });
   }
+
+  async function CreateUser({ email, firstName, lastName }: ICreateUserInput): Promise<IUser> {
+    return User.create({
+      email,
+      firstName,
+      lastName
+    })
+      .then((data: IUser) => {
+        return data;
+      })
+      .catch((error: Error) => {
+        throw error;
+      });
+  }
+
 }
 
 export default new UserController();
