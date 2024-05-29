@@ -1,0 +1,18 @@
+
+###
+
+POST http://localhost:3030/api/user HTTP/1.1
+Authorization: token xxx
+content-type: application/json
+
+{
+  "email" : "sample@gmail.com",
+  "firstName" : "suyeon",
+  "lastName": "you"
+}
+
+
+####
+GET http://localhost:3030/api/users HTTP/1.1
+Authorization: token xxx
+content-type: application/json
