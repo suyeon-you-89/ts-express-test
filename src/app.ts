@@ -1,7 +1,7 @@
+import dotenv from 'dotenv';
 import express, { Express, Application, Request, Response } from 'express';
 import * as http from 'http';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { RouteConfig } from './Common/common.route.config';
 import { UserRoutes } from './User/user.route.config';
 import { AuthRoutes } from './Auth/auth.route.config';
@@ -11,12 +11,12 @@ const routes: Array<RouteConfig> = [];
 
 const app: Express = express();
 
-dotenv.config({});
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
 if (process.env.DEBUG) {
   process.on('unhandledRejection', function (reason) {

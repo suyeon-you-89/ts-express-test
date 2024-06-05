@@ -1,5 +1,12 @@
 import mongoose from 'mongoose';
 import debug, { IDebugger } from 'debug';
+import dotEnv from 'dotenv';
+import dbConfig from '../configs/db.config';
+
+console.log(dbConfig);
+dotEnv.config({});
+
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
 const log: IDebugger = debug('app:mongoose-service');
 
@@ -22,17 +29,20 @@ class MongooseService {
   }
 
   connectWithRetry() {
-    log('process.env.MONGODB_URI', process.env.MONGODB_URI);
-    const MONGODB_URI = process.env.MONGODB_URI || '';
-    log('Connecting to MongoDB(Retry when failed)');
+    const DB_URI = dbConfig.url;
+    console.log('process.env.DB_HOST', DB_URI);
+    console.log('Connecting to MongoDB(Retry when failed)');
     mongoose
-      .connect(MONGODB_URI, this.mongooseOptions)
+      .connect(DB_URI, this.mongooseOptions)
       .then(() => {
         log('MongoDB is connected');
       })
       .catch((err) => {
         const retrySeconds = 5;
-        log(`MongoDB connection unsuccessful (will retry #${++this.count} after ${retrySeconds} seconds):`, err);
+        console.log(
+          `MongoDB connection unsuccessful (will retry #${++this.count} after ${retrySeconds} seconds):`,
+          err
+        );
         setTimeout(this.connectWithRetry, retrySeconds * 1000);
       });
   }

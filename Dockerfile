@@ -1,14 +1,19 @@
-# this install the node image from docker hub
-FROM node:20
-# this is the current working directory in the docker image
-WORKDIR /usr/src/app
-#copy package.json from local to docker image
-COPY package*.json ./
-#run npm install commands
-RUN npm install
-#copy all the files from local directory to docker image
-COPY . .
-#this port exposed to the docker to map.
-EXPOSE 8080
+FROM node:alpine as base
 
-CMD [ "npm" , "start" ]
+WORKDIR /app
+COPY package.json yarn.lock tsconfig.json ./
+RUN rm -rf node_modules && yarn install --frozen-lockfile && yarn cache clean
+
+COPY . .
+
+ENV NODE_ENV=production
+
+RUN npm run build
+
+# RUN npm run start
+EXPOSE 3030
+
+CMD ["npm", "run", "start"]
+
+# $ docker build --tag ts-express:test .
+# docker run -it ts-express:test
