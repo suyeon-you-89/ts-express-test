@@ -6,18 +6,16 @@ import dbConfig from '../configs/db.config';
 console.log(dbConfig);
 dotEnv.config({});
 
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
-
 const log: IDebugger = debug('app:mongoose-service');
 
 class MongooseService {
   private count = 0;
   private mongooseOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    serverSelectionTimeoutMS: 5000,
-    useFindAndModify: false
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+    // useCreateIndex: true,
+    serverSelectionTimeoutMS: 5000
+    // useFindAndModify: false
   };
 
   constructor() {

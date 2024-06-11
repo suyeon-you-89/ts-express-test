@@ -5,7 +5,7 @@
 
 # production
 /dist
-
+/db
 # misc
 .DS_Store
 *.pem

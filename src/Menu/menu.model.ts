@@ -1,8 +1,10 @@
 import { Document, Model, Schema } from 'mongoose';
 import { IMenu } from './menu.interface';
 import mongooseService from '../Common/services/mongoose.service';
+import { ObjectId } from 'mongodb';
 
 export interface MenuDocument extends Document {
+  id: ObjectId;
   code: string;
   name: string;
   type: string;
@@ -14,6 +16,7 @@ interface MenuModel extends Model<MenuDocument> {
 }
 const MenuSchema: Schema = new Schema(
   {
+    _id: { type: ObjectId, require: true },
     code: { type: String, require: true },
     name: { type: String, require: true },
     type: { type: String, require: true },
