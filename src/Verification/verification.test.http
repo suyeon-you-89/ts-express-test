@@ -1,0 +1,37 @@
+### /auth/signup/verify-email?userId=userId & email =email
+POST http://localhost:3030/auth/signup/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "admin"
+}
+
+
+###
+PUT http://localhost:3030/auth/signup/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "admin1",
+  "code": "C70573"
+}
+
+### change email
+POST http://localhost:3030/api/user/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "admin",
+  "email": "admin@gmail.com"
+}
+
+
+### verify change email
+PUT http://localhost:3030/api/user/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "hash": "8129e16e1d02c340dddbd51c8d595c865843af068141b94936833d70820d0970",
+  "email": "admin@gmail.com",
+  "code": "C58190"
+}

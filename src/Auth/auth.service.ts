@@ -1,5 +1,6 @@
 import User from '../User/user.model';
 import { IUser } from '../User/user.interface';
+import { UserStatus } from '../User/user.status';
 class AuthService {
   async createUser(data: IUser) {
     try {
@@ -16,8 +17,19 @@ class AuthService {
 
   async findUserByEmail(email: string) {
     return User.findOne({
-      email: email
+      email
     }).exec();
+  }
+  async findUserById(userId: string) {
+    return User.findOne({
+      userId
+    }).exec();
+  }
+  async findRegisteredUserById(userId: string) {
+    return User.findOne({
+      userId,
+      status: UserStatus.Registered
+    });
   }
 }
 

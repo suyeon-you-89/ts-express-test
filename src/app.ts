@@ -10,6 +10,7 @@ import { MenuRoutes } from './Menu/menu.router.config';
 import { UserRoutes } from './User/user.route.config';
 import { resolvers } from './graphql/resolver';
 import { schema } from './graphql/schema';
+import { errorHandler } from './middlewares/error.middleware';
 
 const routes: Array<RouteConfig> = [];
 
@@ -61,6 +62,9 @@ const startServer = async () => {
   app.get('/', (req: Request, res: Response) => {
     res.send('Welcome world');
   });
+
+  app.use(errorHandler);
+  // registration of handler
   const server: http.Server = http.createServer(app);
 
   server.listen(PORT, () => {

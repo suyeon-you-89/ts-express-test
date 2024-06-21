@@ -5,9 +5,13 @@ Authorization: token xxx
 content-type: application/json
 
 {
-  "email" : "suyeon@gmail.com",
-  "username" : "suyeon",
-  "password": "12345!!"
+  "userId": "admin1",
+  "email" : "admin1@gmail.com",
+  "username" : "suyeon.you",
+  "password": "1234!",
+   "birth": "19890622",
+   "phone": "01043140622",
+   "employeeId": null
 }
 
 ### login
@@ -15,6 +19,31 @@ POST http://localhost:3030/auth/login
 content-type: application/json
 
 {
-  "email": "suyeon@gmail.com",
-  "password": "12345!!"
+  "userId": "admin",
+  "password": "1234!"
 }
+
+### check
+
+GET http://localhost:3030/auth/signup/check?userId=admin HTTP/1.1
+content-type: application/json
+
+### /auth/signup/verify-email?userId=userId & email =email
+POST http://localhost:3030/auth/signup/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "admin"
+}
+
+
+###
+PUT http://localhost:3030/auth/signup/verify-email HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "admin1",
+  "code": "C70573"
+}
+
+

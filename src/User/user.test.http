@@ -6,13 +6,27 @@ Authorization: token xxx
 content-type: application/json
 
 {
-  "email" : "sample@gmail.com",
+  "userId": "admin1",
+  "email" : "admin1@gmail.com",
   "username" : "suyeon",
-  "passsword": "!2123"
+  "password": "1234!",
+   "birth": "19890622",
+   "phone": "01043140622",
+   "employeeId": null
 }
+
+
+### getUser
+GET http://localhost:3030/api/user/admin1 HTTP/1.1
+content-type: application/json
+
+### deleteUser
+DELETE http://localhost:3030/api/user/admin1 HTTP/1.1
+content-type: application/json
 
 
 ####
 GET http://localhost:3030/api/users HTTP/1.1
 Authorization: token xxx
 content-type: application/json
+
