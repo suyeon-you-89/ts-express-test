@@ -4,9 +4,9 @@ import { gql } from 'apollo-server-express';
 export const schema = gql`
   type Menu {
     code: String
-    name: String
+    text: String
     type: String
-    path: String
+    url: String
   }
   type Query {
     getMenus: [Menu]

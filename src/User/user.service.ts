@@ -1,4 +1,4 @@
-import { ErrorCode, Exception } from '@errors/*';
+import { ErrorCode, Exception } from '../errors';
 import { IUser, UserFilter } from './user.interface';
 import User from './user.model';
 import { UserStatus } from './user.status';

@@ -6,8 +6,8 @@ Authorization: token xxx
 content-type: application/json
 
 {
-  "userId": "admin1",
-  "email" : "admin1@gmail.com",
+  "userId": "admin",
+  "email" : "admin@gmail.com",
   "username" : "suyeon",
   "password": "1234!",
    "birth": "19890622",

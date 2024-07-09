@@ -1,10 +1,8 @@
 import debug, { IDebugger } from 'debug';
 import { NextFunction, Request, Response } from 'express';
-import Verification from './verification.model';
+import userService from '../User/user.service';
+import { ErrorCode, Exception } from '../errors';
 import verificationService from './verification.service';
-import userService from '@/User/user.service';
-import { ErrorCode, Exception } from '@errors/*';
-import authService from '@/Auth/auth.service';
 
 const log: IDebugger = debug('auth:controller');
 

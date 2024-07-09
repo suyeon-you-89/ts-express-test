@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "build": "sh -ac '. .env.${NODE_ENV}; npx tsc'",
+    "build": "sh -ac '. ./.env.${NODE_ENV}; npx tsc'",
     "start": "sh -ac '. ./.env.${NODE_ENV}; node dist/app.js'",
     "dev": "sh -ac '. ./.env.local; ts-node src/app.ts'",
     "local": "sh -ac '. ./.env.local; nodemon --exec ts-node -r tsconfig-paths/register src/app.ts'",

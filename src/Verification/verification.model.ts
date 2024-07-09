@@ -1,4 +1,4 @@
-import mongooseService from '@/Common/services/mongoose.service';
+import mongooseService from '../Common/services/mongoose.service';
 import { Timestamp } from 'mongodb';
 import { Document, Model, Schema } from 'mongoose';
 import { IVerification } from './verifiaction.interface';

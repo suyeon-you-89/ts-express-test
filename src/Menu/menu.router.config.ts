@@ -7,7 +7,7 @@ export class MenuRoutes extends RouteConfig {
     super(app, 'MenuRoutes');
   }
   configureRoutes(): express.Application {
-    this.app.route(`/api/menus`).get([MenuController.getMenus]);
+    this.app.route(`/api/menus`).get([MenuController.getMenus]).post([MenuController.searchMenus]);
     this.app.route(`/api/menus/dummy`).post([MenuController.createTestMenus]);
     this.app.route(`/api/menu`).post([MenuController.createMenu]);
     return this.app;

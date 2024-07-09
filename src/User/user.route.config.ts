@@ -1,7 +1,7 @@
+import { Application } from 'express';
 import { RouteConfig } from '../Common/common.route.config';
-import express, { Application, Request, Response } from 'express';
+import verificationController from '../Verification/verification.controller';
 import UserController from './user.controller';
-import verificationController from '@/Verification/verification.controller';
 
 export class UserRoutes extends RouteConfig {
   constructor(app: Application) {

@@ -3,5 +3,5 @@ Authorization: token xxx
 content-type: application/json
 
 {
-  "query": "{getMenus{type, name, code, path}}"
+  "query": "{getMenus{type, text, code, url}}"
 }

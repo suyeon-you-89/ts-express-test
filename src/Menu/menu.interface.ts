@@ -1,6 +1,9 @@
 export interface IMenu {
   type: string;
-  name: string;
+  text: string;
   code: string;
-  path: string;
+  url: string;
+  parent?: string | null;
+  ancestors?: string[];
+  children?: IMenu[];
 }

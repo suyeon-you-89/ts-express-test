@@ -4,11 +4,12 @@ import mongooseService from '../Common/services/mongoose.service';
 import { ObjectId } from 'mongodb';
 
 export interface MenuDocument extends Document {
-  id: ObjectId;
   code: string;
-  name: string;
+  text: string;
   type: string;
-  path: string;
+  url: string;
+  ancestors?: string[];
+  parent?: string | null;
 }
 
 interface MenuModel extends Model<MenuDocument> {
@@ -16,11 +17,12 @@ interface MenuModel extends Model<MenuDocument> {
 }
 const MenuSchema: Schema = new Schema(
   {
-    _id: { type: ObjectId, require: true },
     code: { type: String, require: true },
-    name: { type: String, require: true },
+    text: { type: String, require: true },
     type: { type: String, require: true },
-    path: { type: String, require: true }
+    url: { type: String, require: true },
+    ancestors: { type: Array<String>, require: false, default: [] },
+    parent: { type: String, required: false, default: null }
   },
   {
     toObject: {

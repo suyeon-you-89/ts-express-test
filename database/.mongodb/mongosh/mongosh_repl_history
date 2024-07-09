@@ -1,0 +1,16 @@
+menus.find()
+menu.find()
+show collections
+db.getCollection('menus').find()
+db.getCollection('menus').show()
+db.getCollection('menus').find()
+db.getCollection('menus').show()
+db.getCollectionNames()
+show collections 
+db.collections()
+db.collections
+db.getCollection('menus').find({})
+db.getCollection('menus').findAll()
+db.getCollection('menus').find()
+db.getCollection('menus')
+db.collection('menus')

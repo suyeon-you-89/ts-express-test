@@ -4,9 +4,8 @@ import AuthService from './auth.service';
 import jwt from 'jsonwebtoken';
 import debug, { IDebugger } from 'debug';
 import { createHash, createHmac } from 'crypto';
-import { Exception } from '@errors/error.exception';
-import { ErrorCode } from '@errors/error.code';
-import verificationService from '@/Verification/verification.service';
+import { Exception, ErrorCode } from '../errors';
+import verificationService from '../Verification/verification.service';
 const jwtSecret: string = process.env.JWT_SECRET || 'mh1H2WPFBVs6Vn8w/2D5WTf4CbPxawoH9vDU90hPfqU=';
 const tokenExpirationInSeconds = 36000;
 
@@ -25,10 +24,6 @@ class AuthController {
         // TODO password hash
         if (user.password !== password) {
           throw new Exception(ErrorCode.AuthenticationFailed, { message: 'invalid password' });
-          // return res.status(500).send({
-          //   success: false,
-          //   error: 'password invalid'
-          // });
         } else {
           log('jwt Secret', jwtSecret);
 
@@ -37,7 +32,7 @@ class AuthController {
             employeeId: user.employeeId,
             email: user.email,
             username: user.username,
-            roles: ['admin']
+            roles: ['admin', 'researcher', 'system']
           };
           const token = jwt.sign(tokenData, jwtSecret, {
             expiresIn: tokenExpirationInSeconds

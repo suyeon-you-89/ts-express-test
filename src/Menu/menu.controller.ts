@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import menuService from './menu.service';
 import Menu, { MenuDocument } from './menu.model';
 import { dummyData } from '../app.data.dummy';
+import { IMenu } from './menu.interface';
+import { FilterQuery } from 'mongoose';
 
 class MenuController {
   constructor() {}
@@ -12,11 +14,19 @@ class MenuController {
   }
 
   async getMenus(req: Request, res: Response, next: NextFunction) {
-    Menu.find({}).then((data: Array<MenuDocument>) => {
-      return res.status(200).json({
-        success: true,
-        data
-      });
+    const data = await Menu.find({});
+    return res.status(200).json({
+      success: true,
+      data
+    });
+  }
+
+  async searchMenus(req: Request, res: Response, next: NextFunction) {
+    const result = await menuService.searchMenu(req.body);
+
+    return res.status(200).json({
+      success: true,
+      data: result
     });
   }
 

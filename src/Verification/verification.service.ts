@@ -1,8 +1,7 @@
-import { ErrorCode, Exception } from '@errors/*';
 import { createHmac } from 'crypto';
+import { ErrorCode, Exception } from '../errors';
 import { IVerification } from './verifiaction.interface';
 import Verification, { VerificationDocument } from './verification.model';
-import User from '@/User/user.model';
 
 const jwtSecret: string = process.env.JWT_SECRET || 'mh1H2WPFBVs6Vn8w/2D5WTf4CbPxawoH9vDU90hPfqU=';
 
@@ -37,13 +36,12 @@ class VerificationService {
       console.log({
         hash,
         type,
-        target: email,
         status: 'prepared'
       });
+
       const verification = await Verification.findOne({
         hash,
         type,
-        target: email,
         status: 'prepared'
       }).exec();
       console.log({ verification });

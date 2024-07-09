@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["*.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
@@ -7,7 +7,6 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
-      "@errors/*": ["src/errors"],
       "@/*": ["src/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "outDir": "./dist" /* Specify an output folder for all emitted files. */,

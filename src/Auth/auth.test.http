@@ -1,12 +1,12 @@
 ## signup
 
-POST http://localhost:3030/auth/signup HTTP/1.1
+POST http://localhost:3030/auth/sign-up HTTP/1.1
 Authorization: token xxx
 content-type: application/json
 
 {
-  "userId": "admin1",
-  "email" : "admin1@gmail.com",
+  "userId": "admin",
+  "email" : "admin@gmail.com",
   "username" : "suyeon.you",
   "password": "1234!",
    "birth": "19890622",
@@ -20,30 +20,12 @@ content-type: application/json
 
 {
   "userId": "admin",
-  "password": "1234!"
+  "password": "123!"
 }
 
 ### check
 
-GET http://localhost:3030/auth/signup/check?userId=admin HTTP/1.1
+GET http://localhost:3030/auth/sign-up/check?userId=admin HTTP/1.1
 content-type: application/json
-
-### /auth/signup/verify-email?userId=userId & email =email
-POST http://localhost:3030/auth/signup/verify-email HTTP/1.1
-Content-Type: application/json
-
-{
-  "userId": "admin"
-}
-
-
-###
-PUT http://localhost:3030/auth/signup/verify-email HTTP/1.1
-Content-Type: application/json
-
-{
-  "userId": "admin1",
-  "code": "C70573"
-}
 
 

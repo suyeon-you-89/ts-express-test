@@ -1,29 +1,35 @@
-version: '0.0.3'
+version: '0.0.1'
 
 services:
   mongodb:
     image: mongo:latest
     container_name: app_mongo
-    # container_name: app_mongo
-    restart: unless-stopped
-    # restart: always, unless-stopped
+    restart: always
     env_file:
       - .env
       - .env.production
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=adminroot123
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     ports:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
-      - ./db:/data/db
+      - ./database:/data/db
+      - ./mongo-init/:/docker-entrypoint-initdb.d/:ro
+    # volumes:
+    # - ./db:/data/db
+    networks:
+      - private
 
   app:
+    image: express-app
     build:
       context: .
     depends_on:
       - mongodb
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: always
     env_file:
       - .env
       - .env.production
@@ -34,13 +40,32 @@ services:
       - DB_NAME=$MONGODB_DATABASE
       - DB_PORT=$MONGODB_DOCKER_PORT
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - 3030:3030
     stdin_open: true
     tty: true
+    networks:
+      - public
+      - private
+
+  # next:
+  #   image: next-js-test:0.0.1
+  #   restart: always
+  #   depends_on:
+  #     - app
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - private
+  #     - public
 
 volumes:
-  db:
+  db_data:
+    driver: local
 
+networks:
+  public:
+  private:
+    driver: bridge
   # mongo-express:
   #   image: mongo-express
   #   restart: always

@@ -58,7 +58,7 @@ const UserSchema: Schema = new Schema(
 
 UserSchema.pre('save', function (done) {
   console.log('pre---->');
-  this.set('password', this.get('password'));
+  // this.set('password', this.get('password')); 
   this.set('updatedAt', Date.now);
   done();
 });
