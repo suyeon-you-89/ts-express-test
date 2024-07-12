@@ -8,7 +8,6 @@ export class Exception extends Error {
   constructor(code: string = ErrorCode.Unknown, data: any = null) {
     super(code);
     Object.setPrototypeOf(this, new.target.prototype);
-
     this.name = code;
     this.data = data;
     this.code = code;

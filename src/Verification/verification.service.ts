@@ -33,19 +33,11 @@ class VerificationService {
   async verifyWithHash(hash: string, type: string, code: string, email?: string) {
     console.log('verify verification with hash');
     try {
-      console.log({
-        hash,
-        type,
-        status: 'prepared'
-      });
-
       const verification = await Verification.findOne({
         hash,
         type,
         status: 'prepared'
       }).exec();
-      console.log({ verification });
-
       if (verification) {
         const result = await this.verify(verification, code);
         return result;
@@ -63,8 +55,10 @@ class VerificationService {
       const verification = await Verification.findOne({
         userId,
         type,
-        target: email,
-        status: 'prepared'
+        status: 'prepared',
+        ...(email && {
+          target: email
+        })
       }).exec();
 
       if (verification) {

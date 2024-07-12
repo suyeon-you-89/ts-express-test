@@ -15,12 +15,12 @@ content-type: application/json
 }
 
 ### login
-POST http://localhost:3030/auth/login
+POST http://localhost:3030/auth/sign-in
 content-type: application/json
 
 {
   "userId": "admin",
-  "password": "123!"
+  "password": "1234!"
 }
 
 ### check
